@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendSmart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>SpendSmart</h1>
+        <p>Simplify your finances, one step at a time.</p>
+    </header>
+
+    <div class="container animate">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% if page == "home" %}
+            <div class="welcome-screen">
+                <h1>Welcome to SpendSmart!</h1>
+                <p>Manage your expenses and stay on top of your finances.</p>
+                <div class="button-group">
+                    <button class="btn-primary" onclick="window.location.href='/login'">Login</button>
+                    <button class="btn-secondary" onclick="window.location.href='/register'">Register</button>
+                </div>
+            </div>
+
+        {% elif page == "register" %}
+            <div class="auth-screen">
+                <h2>Create Your Account</h2>
+                <form method="POST" action="/register" class="auth-form">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="number" name="age" placeholder="Age" required>
+                    <button type="submit" class="btn-primary">Register</button>
+                </form>
+                <p class="switch-page">Already have an account? <a href="/login">Login</a></p>
+            </div>
+
+        {% elif page == "login" %}
+            <div class="auth-screen">
+                <h2>Login to Your Account</h2>
+                <form method="POST" action="/login" class="auth-form">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+                <p class="switch-page">Don't have an account? <a href="/register">Register</a></p>
+            </div>
+
+        {% elif page == "enter_salary" %}
+            <div class="auth-screen">
+                <h2>Enter Your Monthly Salary</h2>
+                <form method="POST" action="/enter-salary" class="auth-form">
+                    <input type="number" name="salary" placeholder="Monthly Salary" required>
+                    <button type="submit" class="btn-primary">Submit</button>
+                </form>
+            </div>
+
+        {% elif page == "dashboard" %}
+            <div class="dashboard-screen">
+                <h2>Welcome, {{ user.username }} (Age: {{ user.age }})</h2>
+                <p>Monthly Salary: {{ user.salary }}</p>
+
+                <h2>Your Expenses</h2>
+                <ul class="expense-list">
+                    {% for expense in expenses %}
+                        <li>{{ expense.date }} - {{ expense.category }}: {{ expense.amount }} ({{ expense.description }})</li>
+                    {% endfor %}
+                </ul>
+
+                <h3>Add a New Expense</h3>
+                <form method="POST" action="/add-expense" class="expense-form">
+                    <label for="date">Date:</label>
+                    <input type="date" name="date" required>
+
+                    <label for="category">Category:</label>
+                    <select name="category" required>
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="Rent">Rent</option>
+                        <option value="Electricity Bill">Electricity Bill</option>
+                        <option value="Health">Health</option>
+                        <option value="Groceries">Groceries</option>
+                        <option value="Savings">Savings</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <label for="amount">Amount:</label>
+                    <input type="number" name="amount" required>
+
+                    <label for="description">Description:</label>
+                    <input type="text" name="description" required>
+
+                    <button type="submit" class="btn-primary">Add Expense</button>
+                </form>
+
+                <button class="btn-secondary" onclick="window.location.href='/view-expenses'">View All Expenses</button>
+                <button class="btn-secondary" onclick="window.location.href='/logout'">Logout</button>
+            </div>
+
+        {% elif page == "view_expenses" %}
+            <div class="view-expenses-screen">
+                <h2>All Expenses</h2>
+
+                <h3>Savings</h3>
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                    {% for expense in savings_expenses %}
+                    <tr>
+                        <td>{{ expense.date }}</td>
+                        <td>{{ expense.amount }}</td>
+                        <td>{{ expense.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                <h3>Other</h3>
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                    {% for expense in other_expenses %}
+                    <tr>
+                        <td>{{ expense.date }}</td>
+                        <td>{{ expense.amount }}</td>
+                        <td>{{ expense.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                <h3>General Expenses</h3>
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                    {% for expense in general_expenses %}
+                    <tr>
+                        <td>{{ expense.date }}</td>
+                        <td>{{ expense.category }}</td>
+                        <td>{{ expense.amount }}</td>
+                        <td>{{ expense.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                <button class="btn-secondary" onclick="window.location.href='/dashboard'">Back to Dashboard</button>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+/* General Styles */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+body {
+    background: rgb(15,2,83);
+    background: radial-gradient(circle, rgba(15,2,83,0.989) 1%, rgba(148,173,233,1) 100%);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: darkblue;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Container Styles */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-screen,
+.auth-screen,
+.dashboard-screen,
+.view-expenses-screen {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Button Styles */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+    width: 45%;
+}
+
+.btn-primary {
+    background-color: blue;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Form Input and Select Styles */
+.auth-form input,
+.expense-form input,
+.expense-form select {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.expense-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    color: #333;
+    font-family: inherit;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 viewBox%3D%220 0 4 5%22%3E%3Cpath fill%3D%22%23333%22 d%3D%22M2 0L0 2h4z%22/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+    padding-right: 20px;
+}
+
+.expense-form select:focus, .auth-form input:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+/* Form Button Styles */
+.auth-form button,
+.expense-form button {
+    width: 95%;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #0056b3;
+    color: white;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.auth-form button:hover,
+.expense-form button:hover {
+    background-color: #003d82;
+}
+
+/* Link Styles */
+.switch-page {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+p.switch-page a {
+    color: blue;
+    text-decoration: none;
+}
+
+p.switch-page a:hover {
+    text-decoration: underline;
+}
+
+/* Expense List Styles */
+.expense-list {
+    list-style: none;
+    padding: 0;
+}
+
+.expense-list li {
+    background: #e9ecef;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Heading Styles */
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Form Section Spacing */
+.expense-form {
+    margin-top: 20px;
+}
+
+/* Authentication and Dashboard Screen Styles */
+.auth-screen, .dashboard-screen, .view-expenses-screen {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.auth-form, .expense-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Flash Message Styles */
+.flash-messages {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* View Expenses Table Styles */
+.view-expenses-screen table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.view-expenses-screen th, .view-expenses-screen td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.view-expenses-screen th {
+    background-color: #0056b3;
+    color: white;
+}
+
+.view-expenses-screen tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.view-expenses-screen tr:hover {
+    background-color: #ddd;
+}
+
+/* Expense Category Section Titles */
+.view-expenses-screen h3 {
+    color: #0056b3;
+    margin-top: 30px;
+}
+
+/* Back to Dashboard Button */
+.view-expenses-screen .btn-secondary {
+    margin-top: 20px;
+    width: 50%;
+}
